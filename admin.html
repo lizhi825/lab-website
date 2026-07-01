@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理后台 - 海洋智能装备研究所</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-page">
+    <!-- 管理员头部 -->
+    <header class="admin-header">
+        <h2>🔧 管理后台 - 海洋智能装备研究所</h2>
+        <div>
+            <span style="margin-right:16px;font-size:13px;">👤 管理员</span>
+            <button class="btn-logout" onclick="adminLogout()">退出登录</button>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- 管理Tab -->
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="tab-notices">📢 通知公告</button>
+            <button class="admin-tab" data-tab="tab-gallery">🖼️ 图片管理</button>
+            <button class="admin-tab" data-tab="tab-about">📖 实验室介绍</button>
+            <button class="admin-tab" data-tab="tab-research">🔬 研究方向</button>
+            <button class="admin-tab" data-tab="tab-achievements">📄 科研成果</button>
+            <button class="admin-tab" data-tab="tab-honors">🏆 实验室荣誉</button>
+            <button class="admin-tab" data-tab="tab-team">👥 团队成员</button>
+            <button class="admin-tab" data-tab="tab-news">📰 新闻动态</button>
+            <button class="admin-tab" data-tab="tab-qa">💬 答疑管理</button>
+            <button class="admin-tab" data-tab="tab-suggestions">📝 匿名建议</button>
+        </div>
+
+        <!-- 通知公告 -->
+        <div class="admin-panel active" id="tab-notices">
+            <h3>📢 管理通知公告</h3>
+            <div class="admin-form">
+                <input type="hidden" id="noticeEditId">
+                <div class="form-row">
+                    <div><label>日期</label><input type="date" id="noticeDate"></div>
+                    <div><label>标题</label><input type="text" id="noticeTitle" placeholder="公告标题"></div>
+                </div>
+                <div class="form-row full">
+                    <div><label>内容</label><textarea id="noticeContent" placeholder="公告详细内容"></textarea></div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-primary" onclick="saveNotice()">保存</button>
+                    <button class="btn-secondary" onclick="resetNoticeForm()">重置</button>
+                </div>
+            </div>
+            <div class="admin-item-list" id="noticeAdminList"></div>
+        </div>
+
+        <!-- 图片管理 -->
+        <div class="admin-panel" id="tab-gallery">
+            <h3>🖼️ 管理实验室图片</h3>
+            <div class="admin-form">
+                <input type="hidden" id="galleryEditId">
+                <div class="form-row">
+                    <div><label>图片标题</label><input type="text" id="galleryTitle" placeholder="图片名称"></div>
+                    <div><label>图片URL（或上传后自动填入）</label><input type="text" id="galleryUrl" placeholder="https://... 或留空使用占位图"></div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-primary" onclick="saveGallery()">保存</button>
+                    <button class="btn-secondary" onclick="resetGalleryForm()">重置</button>
+                </div>
+            </div>
+            <div class="admin-item-list" id="galleryAdminList"></div>
+        </div>
+
+        <!-- 实验室介绍 -->
+        <div class="admin-panel" id="tab-about">
+            <h3>📖 编辑实验室介绍</h3>
+            <div class="admin-form">
+                <div class="form-row full">
+                    <div><label>介绍段落一</label><textarea id="aboutIntro" rows="3"></textarea></div>
+                </div>
+                <div class="form-row full">
+                    <div><label>介绍段落二</label><textarea id="aboutIntro2" rows="3"></textarea></div>
+                </div>
+                <div class="form-row full">
+                    <div><label>使命愿景</label><textarea id="aboutMission" rows="3"></textarea></div>
+                </div>
+                <h4 style="margin-top:16px;">统计数据</h4>
+                <div class="form-row">
+                    <div><label>数据1-数值</label><input type="text" id="stat1Num" placeholder="5000+"></div>
+                    <div><label>数据1-标签</label><input type="text" id="stat1Label" placeholder="平方米实验场地"></div>
+                </div>
+                <div class="form-row">
+                    <div><label>数据2-数值</label><input type="text" id="stat2Num" placeholder="30+"></div>
+                    <div><label>数据2-标签</label><input type="text" id="stat2Label" placeholder="科研人员"></div>
+                </div>
+                <div class="form-row">
+                    <div><label>数据3-数值</label><input type="text" id="stat3Num" placeholder="50+"></div>
+                    <div><label>数据3-标签</label><input type="text" id="stat3Label" placeholder="科研项目"></div>
+                </div>
+                <div class="form-row">
+                    <div><label>数据4-数值</label><input type="text" id="stat4Num" placeholder="100+"></div>
+                    <div><label>数据4-标签</label><input type="text" id="stat4Label" placeholder="学术论文"></div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-primary" onclick="saveAbout()">保存介绍</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 研究方向 -->
+        <div class="admin-panel" id="tab-research">
+            <h3>🔬 管理研究方向</h3>
+            <div class="admin-form">
+                <input type="hidden" id="researchEditId">
+                <div class="form-row">
+                    <div><label>图标（Emoji）</label><input type="text" id="researchIcon" placeholder="🤖"></div>
+                    <div><label>标题</label><input type="text" id="researchTitle" placeholder="研究方向名称"></div>
+                </div>
+                <div class="form-row full">
+                    <div><label>描述</label><textarea id="researchDesc" placeholder="研究方向描述"></textarea></div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-primary" onclick="saveResearch()">保存</button>
+                    <button class="btn-secondary" onclick="resetResearchForm()">重置</button>
+                </div>
+            </div>
+            <div class="admin-item-list" id="researchAdminList"></div>
+        </div>
+
+        <!-- 科研成果 -->
+        <div class="admin-panel" id="tab-achievements">
+            <h3>📄 管理科研成果</h3>
+            <div class="admin-form">
+                <input type="hidden" id="achievementEditId">
+                <div class="form-row">
+                    <div><label>年份</label><input type="text" id="achievementYear" placeholder="2026"></div>
+                    <div><label>标题</label><input type="text" id="achievementTitle" placeholder="成果标题"></div>
+                </div>
+                <div class="form-row full">
+                    <div><label>描述</label><textarea id="achievementDesc" placeholder="成果描述"></textarea></div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-primary" onclick="saveAchievement()">保存</button>
+                    <button class="btn-secondary" onclick="resetAchievementForm()">重置</button>
+                </div>
+            </div>
+            <div class="admin-item-list" id="achievementAdminList"></div>
+        </div>
+
+        <!-- 实验室荣誉 -->
+        <div class="admin-panel" id="tab-honors">
+            <h3>🏆 管理实验室荣誉</h3>
+            <div class="admin-form">
+                <input type="hidden" id="honorEditId">
+                <div class="form-row">
+                    <div><label>徽章（Emoji）</label><input type="text" id="honorBadge" placeholder="🏆"></div>
+                    <div><label>荣誉名称</label><input type="text" id="honorTitle" placeholder="荣誉名称"></div>
+                </div>
+                <div class="form-row full">
+                    <div><label>描述（时间等）</label><input type="text" id="honorDesc" placeholder="2024年获批"></div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-primary" onclick="saveHonor()">保存</button>
+                    <button class="btn-secondary" onclick="resetHonorForm()">重置</button>
+                </div>
+            </div>
+            <div class="admin-item-list" id="honorAdminList"></div>
+        </div>
+
+        <!-- 团队成员 -->
+        <div class="admin-panel" id="tab-team">
+            <h3>👥 管理团队成员</h3>
+            <div class="admin-form">
+                <input type="hidden" id="teamEditId">
+                <div class="form-row">
+                    <div><label>头像（Emoji）</label><input type="text" id="teamAvatar" placeholder="👨‍🔬"></div>
+                    <div><label>姓名</label><input type="text" id="teamName" placeholder="姓名"></div>
+                </div>
+                <div class="form-row">
+                    <div><label>职务</label><input type="text" id="teamRole" placeholder="所长 / 教授"></div>
+                    <div><label>简介</label><input type="text" id="teamDesc" placeholder="研究方向等"></div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-primary" onclick="saveTeam()">保存</button>
+                    <button class="btn-secondary" onclick="resetTeamForm()">重置</button>
+                </div>
+            </div>
+            <div class="admin-item-list" id="teamAdminList"></div>
+        </div>
+
+        <!-- 新闻动态 -->
+        <div class="admin-panel" id="tab-news">
+            <h3>📰 管理新闻动态</h3>
+            <div class="admin-form">
+                <input type="hidden" id="newsEditId">
+                <div class="form-row">
+                    <div><label>日期</label><input type="date" id="newsDate"></div>
+                    <div><label>标题</label><input type="text" id="newsTitle" placeholder="新闻标题"></div>
+                </div>
+                <div class="form-row full">
+                    <div><label>内容摘要</label><textarea id="newsContent" placeholder="新闻内容摘要"></textarea></div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn-primary" onclick="saveNews()">保存</button>
+                    <button class="btn-secondary" onclick="resetNewsForm()">重置</button>
+                </div>
+            </div>
+            <div class="admin-item-list" id="newsAdminList"></div>
+        </div>
+
+        <!-- 答疑管理 -->
+        <div class="admin-panel" id="tab-qa">
+            <h3>💬 管理答疑区</h3>
+            <p style="color:var(--gray-600);margin-bottom:16px;">回复用户提问，或删除不当问题</p>
+            <div class="admin-item-list" id="qaAdminList"></div>
+            <!-- 回复弹窗 -->
+            <div id="qaReplyModal" style="display:none;margin-top:16px;padding:20px;background:var(--gray-50);border-radius:var(--radius);">
+                <h4>回复问题</h4>
+                <input type="hidden" id="qaReplyId">
+                <p id="qaReplyQuestion" style="margin:8px 0;font-weight:600;"></p>
+                <textarea id="qaReplyAnswer" placeholder="输入回复内容..." style="width:100%;min-height:80px;margin:8px 0;padding:10px;border:1px solid var(--gray-300);border-radius:var(--radius);font-family:inherit;"></textarea>
+                <div class="btn-row">
+                    <button class="btn-primary" onclick="saveQAReply()">提交回复</button>
+                    <button class="btn-secondary" onclick="document.getElementById('qaReplyModal').style.display='none'">取消</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 匿名建议 -->
+        <div class="admin-panel" id="tab-suggestions">
+            <h3>📝 查看匿名建议</h3>
+            <p style="color:var(--gray-600);margin-bottom:16px;">所有建议完全匿名，仅供管理员查看</p>
+            <div class="admin-item-list" id="suggestionAdminList"></div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
