@@ -347,23 +347,8 @@
                 </div>
             </div>
             <div class="container page-body">
-                <div class="qa-auth-wall" id="qaAuthWall">
-                    <div class="auth-prompt">
-                        <span class="auth-icon">🔒</span>
-                        <h3>请先登录</h3>
-                        <p>答疑区需要用户登录后才能访问</p>
-                        <a href="login.html" class="btn-primary">前往登录</a>
-                    </div>
-                </div>
-                <div class="qa-content" id="qaContent" style="display:none;">
-                    <div class="qa-list" id="qaList">
-                        <!-- 动态加载 -->
-                    </div>
-                    <div class="qa-form">
-                        <h4>提交新问题</h4>
-                        <textarea id="qaQuestion" placeholder="请输入您的问题..."></textarea>
-                        <button class="btn-primary" onclick="submitQuestion()">提交问题</button>
-                    </div>
+                <div class="qa-list" id="qaList">
+                    <!-- 动态渲染 -->
                 </div>
             </div>
         </section>

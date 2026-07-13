@@ -872,6 +872,62 @@ ul { list-style: none; }
 }
 .lightbox-close:hover { opacity: 0.7; }
 
+/* ========== 答疑区邮箱样式 ========== */
+.qa-email-box {
+    text-align: center;
+    background: linear-gradient(135deg, #e8f4fd, #f0f7ff);
+    border: 2px dashed var(--primary-light);
+    border-radius: var(--radius-lg);
+    padding: 40px 20px;
+    margin-bottom: 40px;
+}
+.qa-email-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+.qa-email-box h3 {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+.qa-email-box p {
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+.qa-email-link {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: white;
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all var(--transition);
+    box-shadow: var(--shadow);
+}
+.qa-email-link:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+.qa-email-hint {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    margin-top: 8px;
+}
+.qa-faq {
+    margin-top: 20px;
+}
+.qa-faq h3 {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary-light);
+}
+
 /* ========== 实验室文化 ========== */
 .culture-intro {
     text-align: center;

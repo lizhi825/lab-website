@@ -332,37 +332,30 @@ function renderNews() {
 function renderQA() {
     const list = document.getElementById('qaList');
     if (!list) return;
-    if (SiteData.qa.length === 0) {
-        list.innerHTML = '<p style="text-align:center;color:var(--gray-600);padding:20px;">暂无问答，快来提问吧！</p>';
-        return;
-    }
-    list.innerHTML = SiteData.qa.map(q => `
+
+    // 常见问题列表
+    const faqHtml = SiteData.qa.length > 0 ? SiteData.qa.map(q => `
         <div class="qa-item">
             <div class="qa-q">❓ ${q.question}</div>
-            ${q.answer ? `<div class="qa-a">💡 ${q.answer}</div>` : '<div class="qa-a" style="color:#999;">等待回复中...</div>'}
-            <div class="qa-meta">${q.user} · ${q.time}</div>
+            ${q.answer ? `<div class="qa-a">💡 ${q.answer}</div>` : ''}
         </div>
-    `).join('');
+    `).join('') : '';
+
+    list.innerHTML = `
+        <div class="qa-email-box">
+            <div class="qa-email-icon">📧</div>
+            <h3>有问题？发送邮件给我们</h3>
+            <p>请将您的问题发送至邮箱，我们会尽快回复</p>
+            <a href="mailto:${SiteData.qaEmail}" class="qa-email-link">${SiteData.qaEmail}</a>
+            <p class="qa-email-hint">点击邮箱地址即可发送邮件</p>
+        </div>
+        ${faqHtml ? `<div class="qa-faq"><h3>📋 常见问题</h3>${faqHtml}</div>` : ''}
+    `;
 }
 
 function submitQuestion() {
-    if (!isLoggedIn()) { showToast('请先登录', 'error'); return; }
-    const textarea = document.getElementById('qaQuestion');
-    const content = textarea.value.trim();
-    if (!content) { showToast('请输入问题内容', 'error'); return; }
-
-    const user = getCurrentUser();
-    SiteData.qa.unshift({
-        id: Date.now(),
-        question: content,
-        answer: '',
-        time: new Date().toISOString().split('T')[0],
-        user: user.username
-    });
-    SiteData.save('qa', SiteData.qa);
-    textarea.value = '';
-    renderQA();
-    showToast('问题已提交，等待回复');
+    // 不再使用在线提交，改为引导用户发送邮件
+    window.location.href = `mailto:${SiteData.qaEmail}`;
 }
 
 // ========== 匿名建议 ==========
