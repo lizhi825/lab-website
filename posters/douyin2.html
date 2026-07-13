@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1080,height=1920">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@700;900&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -13,271 +13,255 @@ body {
   height: 1920px;
   overflow: hidden;
   font-family: 'Noto Sans SC', sans-serif;
-  background: #030a14;
+  background: #020810;
   position: relative;
 }
 
 .bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 30%, #0d2847 0%, #060e1a 50%, #030a14 100%);
+  background: linear-gradient(180deg, #010508 0%, #051220 30%, #081a30 50%, #051220 70%, #010508 100%);
   z-index: 0;
 }
 
-/* 科技线条 */
-.tech-lines {
+/* 教师照片区 */
+.teacher-area {
+  position: relative;
+  width: 100%;
+  height: 580px;
+  overflow: hidden;
+  z-index: 2;
+}
+.teacher-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: brightness(0.65) contrast(1.05);
+}
+.teacher-overlay {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  opacity: 0.06;
-  background:
-    repeating-linear-gradient(0deg, transparent, transparent 119px, #4da8da 119px, #4da8da 120px),
-    repeating-linear-gradient(90deg, transparent, transparent 119px, #4da8da 119px, #4da8da 120px);
+  background: linear-gradient(180deg, rgba(2,8,16,0.2) 0%, transparent 25%, transparent 70%, rgba(2,8,16,1) 100%);
 }
-
-/* 角落装饰 */
-.corner {
+.teacher-label {
   position: absolute;
-  width: 80px; height: 80px;
-  border-color: rgba(77,168,218,0.2);
-  border-style: solid;
-  z-index: 1;
+  bottom: 30px;
+  left: 60px;
+  z-index: 3;
+  font-size: 22px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 6px;
+  background: rgba(0,0,0,0.4);
+  padding: 6px 20px;
 }
-.corner-tl { top: 40px; left: 40px; border-width: 2px 0 0 2px; }
-.corner-tr { top: 40px; right: 40px; border-width: 2px 2px 0 0; }
-.corner-bl { bottom: 40px; left: 40px; border-width: 0 0 2px 2px; }
-.corner-br { bottom: 40px; right: 40px; border-width: 0 2px 2px 0; }
 
 .content {
   position: relative;
   z-index: 2;
-  padding: 80px 70px;
-  height: 100%;
+  padding: 32px 60px 60px;
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
-/* 标题 */
-.header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-.header .inst {
-  font-size: 24px;
-  letter-spacing: 10px;
-  color: rgba(255,255,255,0.3);
-  margin-bottom: 16px;
-}
-.header h1 {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 72px;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 8px;
-  line-height: 1.3;
-}
-.header h1 .accent {
-  color: #4da8da;
-  position: relative;
-}
-.header h1 .accent::after {
-  content: '';
-  position: absolute;
-  bottom: 4px; left: 0; right: 0;
-  height: 4px;
-  background: rgba(77,168,218,0.3);
-}
-
-/* 成员展示 */
-.section-label {
-  font-size: 22px;
-  color: #4da8da;
-  letter-spacing: 6px;
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-/* 教师 */
-.teachers {
+/* 导师卡片 */
+.mentors {
   display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 36px;
+  gap: 20px;
+  margin-bottom: 28px;
 }
-.t-card {
+.mentor-card {
+  flex: 1;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(77,168,218,0.12);
-  border-radius: 12px;
-  padding: 28px 36px;
+  border-radius: 10px;
+  padding: 24px 16px;
   text-align: center;
-  min-width: 200px;
 }
-.t-card .t-avatar {
-  width: 80px; height: 80px;
+.mentor-card .m-avatar {
+  width: 64px; height: 64px;
   border-radius: 50%;
   background: linear-gradient(135deg, #1a3a5c, #0d2847);
-  border: 3px solid rgba(77,168,218,0.3);
+  border: 2px solid rgba(77,168,218,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 16px;
-  font-size: 32px;
+  margin: 0 auto 12px;
+  font-size: 26px;
   font-weight: 700;
   color: #4da8da;
 }
-.t-card .t-name {
-  font-size: 28px;
+.mentor-card .m-name {
+  font-size: 24px;
   color: #fff;
   font-weight: 700;
-  letter-spacing: 3px;
-}
-.t-card .t-role {
-  font-size: 18px;
-  color: rgba(255,255,255,0.4);
   letter-spacing: 2px;
-  margin-top: 6px;
+}
+.mentor-card .m-role {
+  font-size: 16px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+  margin-top: 4px;
 }
 
 /* 学生成就 */
-.achievements {
+.achieve-title {
+  font-size: 20px;
+  color: #4da8da;
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.achieve-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 .ach-tag {
-  background: rgba(77,168,218,0.08);
-  border: 1px solid rgba(77,168,218,0.15);
+  background: rgba(77,168,218,0.06);
+  border: 1px solid rgba(77,168,218,0.12);
   border-radius: 8px;
-  padding: 18px 24px;
+  padding: 16px 20px;
   text-align: center;
-  min-width: 180px;
+  min-width: 160px;
 }
-.ach-tag .ach-name {
-  font-size: 24px;
+.ach-tag .name {
+  font-size: 22px;
   color: #fff;
   font-weight: 600;
   letter-spacing: 2px;
 }
-.ach-tag .ach-desc {
-  font-size: 16px;
+.ach-tag .desc {
+  font-size: 15px;
   color: #4da8da;
   letter-spacing: 1px;
-  margin-top: 6px;
-  line-height: 1.4;
+  margin-top: 4px;
+  line-height: 1.3;
 }
 
-/* 底部CTA */
+/* 环境照片 */
+.env-photos {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.env-photo {
+  flex: 1;
+  height: 150px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(77,168,218,0.12);
+}
+.env-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CTA */
 .cta {
   text-align: center;
   margin-top: auto;
-  padding: 36px;
-  background: rgba(77,168,218,0.05);
+  padding: 24px 40px;
+  background: rgba(77,168,218,0.06);
   border: 2px solid rgba(77,168,218,0.15);
-  border-radius: 16px;
+  border-radius: 14px;
 }
-.cta .cta-title {
-  font-size: 36px;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 6px;
-  margin-bottom: 12px;
-}
-.cta .cta-qq {
-  font-size: 60px;
+.cta .qq-num {
+  font-size: 52px;
   font-weight: 900;
   color: #4da8da;
-  letter-spacing: 8px;
-  margin-bottom: 8px;
+  letter-spacing: 6px;
+  margin-bottom: 4px;
 }
-.cta .cta-group {
-  font-size: 22px;
-  color: rgba(255,255,255,0.35);
-  letter-spacing: 3px;
-  margin-bottom: 16px;
-}
-.cta .cta-info {
+.cta .qq-group {
   font-size: 18px;
-  color: rgba(255,255,255,0.25);
-  letter-spacing: 3px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.cta .info {
+  font-size: 15px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 2px;
 }
 </style>
 </head>
 <body>
 <div class="bg"></div>
-<div class="tech-lines"></div>
-<div class="corner corner-tl"></div>
-<div class="corner corner-tr"></div>
-<div class="corner corner-bl"></div>
-<div class="corner corner-br"></div>
+
+<div class="teacher-area">
+  <img src="../assets/gallery/teachers.jpg" alt="导师团队">
+  <div class="teacher-overlay"></div>
+  <div class="teacher-label">指导教师团队</div>
+</div>
 
 <div class="content">
-  <div class="header">
-    <div class="inst">哈尔滨理工大学 · 海洋智能装备研究所</div>
-    <h1>这里走出了<span class="accent">国奖</span><br>走出了<span class="accent">SCI</span>论文<br>走出了<span class="accent">保研山大</span></h1>
-  </div>
-
-  <div class="section-label">▎ 指导教师</div>
-  <div class="teachers">
-    <div class="t-card">
-      <div class="t-avatar">赵</div>
-      <div class="t-name">赵金涛</div>
-      <div class="t-role">副教授 · 硕导</div>
+  <div class="mentors">
+    <div class="mentor-card">
+      <div class="m-avatar">赵</div>
+      <div class="m-name">赵金涛</div>
+      <div class="m-role">副教授 · 硕导</div>
     </div>
-    <div class="t-card">
-      <div class="t-avatar">张</div>
-      <div class="t-name">张振杰</div>
-      <div class="t-role">指导教师</div>
+    <div class="mentor-card">
+      <div class="m-avatar">张</div>
+      <div class="m-name">张振杰</div>
+      <div class="m-role">指导教师</div>
     </div>
-    <div class="t-card">
-      <div class="t-avatar">贾</div>
-      <div class="t-name">贾明川</div>
-      <div class="t-role">指导教师</div>
+    <div class="mentor-card">
+      <div class="m-avatar">贾</div>
+      <div class="m-name">贾明川</div>
+      <div class="m-role">指导教师</div>
     </div>
   </div>
 
-  <div class="section-label">▎ 优秀成员（部分）</div>
-  <div class="achievements">
+  <div class="achieve-title">▎ 优秀成员成就</div>
+  <div class="achieve-grid">
     <div class="ach-tag">
-      <div class="ach-name">李智浩</div>
-      <div class="ach-desc">国家级大创 · 国奖</div>
+      <div class="name">李智浩</div>
+      <div class="desc">国家级大创 · 国奖</div>
     </div>
     <div class="ach-tag">
-      <div class="ach-name">吴佳璘</div>
-      <div class="ach-desc">国家级大创 · 建模获奖</div>
+      <div class="name">吴佳璘</div>
+      <div class="desc">国家级大创 · 建模获奖</div>
     </div>
     <div class="ach-tag">
-      <div class="ach-name">孙文源</div>
-      <div class="ach-desc">国家级大创 · 省级二等奖</div>
+      <div class="name">孙文源</div>
+      <div class="desc">国家级大创 · 省二等奖</div>
     </div>
     <div class="ach-tag">
-      <div class="ach-name">陈伟明</div>
-      <div class="ach-desc">保送山东大学</div>
+      <div class="name">陈伟明</div>
+      <div class="desc">保送山东大学</div>
     </div>
     <div class="ach-tag">
-      <div class="ach-name">董艳琪</div>
-      <div class="ach-desc">研究生 · 发表SCI</div>
+      <div class="name">董艳琪</div>
+      <div class="desc">研究生 · 发表SCI</div>
     </div>
     <div class="ach-tag">
-      <div class="ach-name">康家硕</div>
-      <div class="ach-desc">国家级大创负责人</div>
+      <div class="name">康家硕</div>
+      <div class="desc">国家级大创负责人</div>
     </div>
-    <div class="ach-tag">
-      <div class="ach-name">房爱谦</div>
-      <div class="ach-desc">省级大创负责人</div>
+  </div>
+
+  <div class="env-photos">
+    <div class="env-photo">
+      <img src="../assets/gallery/lab-environment/1a6f746c373cbdbd4ec07d8bdb1badfb.jpg" alt="">
     </div>
-    <div class="ach-tag">
-      <div class="ach-name">亓宇哲</div>
-      <div class="ach-desc">成绩优异</div>
+    <div class="env-photo">
+      <img src="../assets/gallery/lab-environment/34a8c498b45b0569f88d6e5a2093defa.jpg" alt="">
+    </div>
+    <div class="env-photo">
+      <img src="../assets/gallery/lab-environment/40fb8e5f2d34a6835841c2c03ebdda24.jpg" alt="">
     </div>
   </div>
 
   <div class="cta">
-    <div class="cta-title">下一个就是你</div>
-    <div class="cta-qq">464750423</div>
-    <div class="cta-group">哈理工海智所迎新群</div>
-    <div class="cta-info">📍 一号实验楼401 · 📞 17667031628</div>
+    <div class="qq-num">464750423</div>
+    <div class="qq-group">🐧 哈理工海智所迎新群</div>
+    <div class="info">📍 一号实验楼401 · 📞 17667031628</div>
   </div>
 </div>
 </body>
