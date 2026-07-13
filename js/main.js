@@ -106,6 +106,7 @@ function renderDynamicContent() {
     renderCertificates();
     renderTeam();
     renderTeamPhotos();
+    renderLabCulture();
     renderNews();
 }
 
@@ -265,6 +266,45 @@ function renderTeamPhotos() {
             <img src="${url}" alt="团队合影 ${i+1}" loading="lazy" onclick="openLightbox('${url}')">
         </div>
     `).join('');
+}
+
+// ========== 实验室文化 ==========
+function renderLabCulture() {
+    const container = document.getElementById('labCulture');
+    if (!container) return;
+
+    const culture = SiteData.labCulture;
+    if (!culture) return;
+
+    container.innerHTML = `
+        <div class="culture-intro">
+            <p>${culture.intro}</p>
+        </div>
+        <div class="culture-cards">
+            <div class="culture-card">
+                <h3>🎉 ${culture.teamBuilding.title}</h3>
+                <p>${culture.teamBuilding.desc}</p>
+                <div class="culture-photos">
+                    ${culture.teamBuilding.photos.map((url, i) => `
+                        <div class="culture-photo-item">
+                            <img src="${url}" alt="团建 ${i+1}" loading="lazy" onclick="openLightbox('${url}')">
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            <div class="culture-card">
+                <h3>🎲 ${culture.boardGame.title}</h3>
+                <p>${culture.boardGame.desc}</p>
+                <div class="culture-photos">
+                    ${culture.boardGame.photos.map((url, i) => `
+                        <div class="culture-photo-item">
+                            <img src="${url}" alt="桌游 ${i+1}" loading="lazy" onclick="openLightbox('${url}')">
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 // ========== 新闻动态 ==========

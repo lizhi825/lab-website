@@ -141,6 +141,30 @@ const SiteData = {
         'assets/gallery/graduation-photos/63ab6ae5c1fccb1b65801db7a9afeac9.jpg',
     ],
 
+    // 实验室文化
+    labCulture: {
+        intro: '海智所不仅注重科研能力的培养，更重视团队文化建设。研究所定期组织团建活动，增进团队成员之间的感情，营造积极向上、团结协作的科研氛围。',
+        teamBuilding: {
+            title: '团建文化',
+            desc: '研究所定期组织户外拓展、聚餐、文体活动等团建项目，让成员在科研之余放松身心，增强团队凝聚力。团建活动不仅拉近了师生距离，也培养了成员之间的默契与信任。',
+            photos: [
+                'assets/gallery/team-members/21a28e9abbf5c6d51fbd55d77bf1ee74.png',
+                'assets/gallery/team-members/d863a3fbb706e8d05e979672a2976441.png',
+                'assets/gallery/team-members/fd16ddea9d232c21e9499dc680ba9a46.png',
+            ]
+        },
+        boardGame: {
+            title: '桌游文化',
+            desc: '桌游是海智所的特色文化之一。研究所在课余时间组织桌游活动，包括三国杀、狼人杀、卡坦岛等多种策略桌游。桌游不仅锻炼逻辑思维和策略规划能力，更成为团队成员之间沟通交流、增进友谊的重要纽带。',
+            photos: [
+                'assets/gallery/campus-weihai/04f9ac87281dcfac807c9dc98939395a.jpg',
+                'assets/gallery/campus-weihai/250e69a28502a23cca4793bb1a639643.jpg',
+                'assets/gallery/campus-weihai/8044d363769246290680068e0993421d.jpg',
+                'assets/gallery/campus-weihai/bd7bcf1ed81ce3157d24e93e94d11edd.jpg',
+            ]
+        }
+    },
+
     // 新闻动态
     news: JSON.parse(localStorage.getItem('site_news') || JSON.stringify([
         { id: 1, date: '2026-07-10', title: '海智所2026年暑期科研训练营正式启动', content: '面向全院本科生的暑期科研训练营正式启动招募，涵盖IPMC人工肌肉、仿生鱼、酸洗抑雾剂等多个课题方向，为学生提供近距离接触科研的机会。' },
