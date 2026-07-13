@@ -25,8 +25,7 @@ function initNavigation() {
             targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        if (pageName === 'qa') checkQAAccess();
-        if (pageName === 'anonymous') checkAnonymousAccess();
+        if (pageName === 'qa') renderQA();
     }
 
     navLinks.forEach(link => {
@@ -360,7 +359,6 @@ function submitQuestion() {
 
 // ========== 匿名建议 ==========
 function submitSuggestion() {
-    if (!isLoggedIn()) { showToast('请先登录', 'error'); return; }
     const category = document.getElementById('suggestionCategory').value;
     const content = document.getElementById('suggestionContent').value.trim();
     if (!category) { showToast('请选择建议类别', 'error'); return; }

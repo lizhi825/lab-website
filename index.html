@@ -363,29 +363,19 @@
                 </div>
             </div>
             <div class="container page-body">
-                <div class="anonymous-auth-wall" id="anonymousAuthWall">
-                    <div class="auth-prompt">
-                        <span class="auth-icon">🔒</span>
-                        <h3>请先登录</h3>
-                        <p>匿名建议区需要用户登录后才能提交（提交后完全匿名）</p>
-                        <a href="login.html" class="btn-primary">前往登录</a>
-                    </div>
+                <div class="anonymous-intro">
+                    <p>💡 您的建议将完全匿名提交，我们珍视每一条反馈。</p>
                 </div>
-                <div class="anonymous-content" id="anonymousContent" style="display:none;">
-                    <div class="anonymous-intro">
-                        <p>💡 您的建议将完全匿名提交，我们珍视每一条反馈。</p>
-                    </div>
-                    <div class="anonymous-form">
-                        <select id="suggestionCategory">
-                            <option value="">选择建议类别</option>
-                            <option value="科研">科研方向</option>
-                            <option value="管理">实验室管理</option>
-                            <option value="设施">设施设备</option>
-                            <option value="其他">其他</option>
-                        </select>
-                        <textarea id="suggestionContent" placeholder="请输入您的建议（完全匿名）..."></textarea>
-                        <button class="btn-primary" onclick="submitSuggestion()">匿名提交</button>
-                    </div>
+                <div class="anonymous-form">
+                    <select id="suggestionCategory">
+                        <option value="">选择建议类别</option>
+                        <option value="科研">科研方向</option>
+                        <option value="管理">实验室管理</option>
+                        <option value="设施">设施设备</option>
+                        <option value="其他">其他</option>
+                    </select>
+                    <textarea id="suggestionContent" placeholder="请输入您的建议（完全匿名）..."></textarea>
+                    <button class="btn-primary" onclick="submitSuggestion()">匿名提交</button>
                 </div>
             </div>
         </section>
